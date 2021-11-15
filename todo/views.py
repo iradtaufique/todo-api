@@ -6,6 +6,7 @@ from todo.models import Todo
 
 from todo.serializers import TodaSerializer
 from django_filters.rest_framework import DjangoFilterBackend
+from todo.pagination import CustomPagePagination
 
 
 """ CreateAPIView is used to handle post request"""
@@ -34,6 +35,7 @@ class TodoListAPIView(ListAPIView):
 """This view will create and list todos at the same time"""
 class CreateListTodos(ListCreateAPIView):
     serializer_class = TodaSerializer
+    pagination_class = CustomPagePagination
     permission_class = (IsAuthenticated,)
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['id', 'title', 'desc', 'is_complete']
