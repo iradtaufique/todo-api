@@ -7,8 +7,7 @@ from authentication.models import User
 
 class JWTAuthentication(BaseAuthentication):
     def authenticate(self, request):
-        return super().authenticate(request)
-
+        
         auth_header = get_authorization_header(request)
         auth_data = auth_header.decode('utf-8')
         auth_token = auth_data.split(" ")
